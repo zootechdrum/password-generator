@@ -30,10 +30,14 @@ function generatePassword(){
       alert('Password must be between minimum of 8 to a max of 120 charechters')
   }
 
-  const capQuestion = prompt("Would you like capital letters in the password? \n Type: Y or N")
-  const lowerQuestion = prompt("Would you like lower case letters in the password? \n Type: Y or N ")
-  const specialQuestion = prompt("Would you like special charechters in password? Type: Y or N")
+  const capQuestion = prompt("Would you like capital letters in the password? \n Type: Y or N").toUpperCase()
+  const lowerQuestion = prompt("Would you like lower case letters in the password? \n Type: Y or N ").toUpperCase()
+  const specialQuestion = prompt("Would you like special charechters in password? \n Type: Y or N").toUpperCase()
 
+
+
+//Depending on how user answers question
+//sub-array will be added to includechar array
   if(capQuestion === 'Y'){
     includeChar.push(capital)
   }
@@ -45,13 +49,22 @@ function generatePassword(){
   }
 
   while(userPassword.length < passwordLength){
+    //check the length of includechar which holds all sub array
     let lengthOfarray = includeChar.length;
+    //generate a randomnumber for lengthOfarray
     let randomIndex = Math.floor(Math.random() * lengthOfarray);
+
+    //select a random index from our includeChar array
     let chooseIndex = includeChar[randomIndex];
+    //depending on the sub-arrray chosen we are going to generate a random number based on the 
+    //length of that subarray
+    console.log(chooseIndex)
     let subIndex = chooseIndex[Math.floor(Math.random() * chooseIndex.length)]
+    //push that charechter to our userpassword array
     userPassword.push(subIndex);
 
   }
+  //Join all items in the array with a little space betweeb
   return userPassword.join(' ')
 }
 
